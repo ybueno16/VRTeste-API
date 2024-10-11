@@ -34,11 +34,24 @@ public class CursoRepositoryImpl implements CursoRepository {
             while (resultSet.next()) {
                 Curso curso = new Curso();
                 curso.setId(resultSet.getLong("id"));
-                curso.setNome(resultSet.getString("nome"));
+                curso.setDescricao(resultSet.getString("descricao"));
                 curso.setEmenta(resultSet.getString("ementa"));
                 cursos.add(curso);
             }
         }
         return cursos;
+    }
+
+    public void cadastrarCurso (Curso curso) throws Exception {
+        try(Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()){
+            sql = new StringBuilder();
+            sql.append("INSERT INTO curso (descricao, ementa) VALUES (");
+            sql.append("'");
+            sql.append(curso.getDescricao());
+            sql.append("', '");
+            sql.append(curso.getEmenta());
+            sql.append("')");
+            stmt.executeUpdate(sql.toString());
+        }
     }
 }

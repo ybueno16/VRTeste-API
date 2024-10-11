@@ -20,4 +20,8 @@ public class CursoService {
     public List<Curso> getCursos() throws Exception {
         return cursoRepository.getCursos();
     }
+
+    public void cadastrarCurso(Curso curso) throws Exception {
+        cursoRepository.cadastrarCurso(curso);
+    }
 }

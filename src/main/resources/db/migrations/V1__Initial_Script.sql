@@ -1,18 +1,18 @@
 CREATE TABLE curso (
-    codigo INT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     descricao VARCHAR(50) NOT NULL,
     ementa TEXT NOT NULL
 );
 
 CREATE TABLE aluno (
-    codigo INT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE curso_aluno (
-    codigo INT PRIMARY KEY,
-    codigo_aluno INT,
-    codigo_curso INT,
-    FOREIGN KEY (codigo_aluno) REFERENCES aluno(codigo),
-    FOREIGN KEY (codigo_curso) REFERENCES curso(codigo)
+    id SERIAL PRIMARY KEY,
+    id_aluno INT,
+    id_curso INT,
+    FOREIGN KEY (id_aluno) REFERENCES aluno(id),
+    FOREIGN KEY (id_curso) REFERENCES curso(id)
 );

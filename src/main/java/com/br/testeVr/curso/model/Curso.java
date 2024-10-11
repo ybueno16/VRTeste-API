@@ -3,7 +3,7 @@ package com.br.testeVr.curso.model;
 public class Curso {
 
     private Long id;
-    private String nome;
+    private String descricao;
     private String ementa;
 
     public Long getId() {
@@ -14,12 +14,12 @@ public class Curso {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String nome) {
+        this.descricao = nome;
     }
 
     public String getEmenta() {
