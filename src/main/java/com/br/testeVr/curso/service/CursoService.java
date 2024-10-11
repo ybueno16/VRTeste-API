@@ -18,6 +18,6 @@ public class CursoService {
     }
 
     public List<Curso> getCursos() throws Exception {
-        return cursoRepository.getCurm rsos();
+        return cursoRepository.getCursos();
     }
 }
