@@ -60,6 +60,25 @@ public class CursoController {
         }
     }
 
+    @PutMapping
+    public ResponseEntity<?> alterarCurso(@RequestBody Curso curso) throws Exception {
+        try {
+            this.cursoService.alterarCurso(curso);
+            return DefaultResponseEntityFactory.create(
+                    "Cursos alterados com sucesso!",
+                    curso,
+                    HttpStatus.OK
+            );
+        } catch (SQLException e) {
+            return DefaultResponseEntityFactory.create(
+                    "Erro ao alterar os Cursos!",
+                    Collections.emptyList(),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> removerCurso(@PathVariable("id") Long id) throws Exception {
         try {

@@ -55,6 +55,22 @@ public class CursoRepositoryImpl implements CursoRepository {
         }
     }
 
+    @Override
+    public void alterarCurso(Curso curso) throws Exception {
+
+        try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {
+            sql = new StringBuilder();
+            sql.append("UPDATE curso SET ");
+            sql.append("descricao = '");
+            sql.append(curso.getDescricao());
+            sql.append("', ementa = '");
+            sql.append(curso.getEmenta());
+            sql.append("' WHERE id = ");
+            sql.append(curso.getId());
+            stmt.executeUpdate(sql.toString());
+        }
+    }
+
     private boolean verificaAlunoMatriculado(Long codigoCurso) throws Exception {
 
         try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {

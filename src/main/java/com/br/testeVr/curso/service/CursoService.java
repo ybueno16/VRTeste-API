@@ -25,6 +25,10 @@ public class CursoService {
         cursoRepository.cadastrarCurso(curso);
     }
 
+    public void alterarCurso(Curso curso) throws Exception {
+        cursoRepository.alterarCurso(curso);
+    }
+
     public void removerCurso(Long id) throws Exception {
         cursoRepository.removerCurso(id);
     }
