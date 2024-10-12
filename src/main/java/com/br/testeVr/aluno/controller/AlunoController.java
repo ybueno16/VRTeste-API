@@ -58,4 +58,42 @@ public class AlunoController {
             );
         }
     }
+
+    @PutMapping
+    public ResponseEntity<?> alterarAluno(@RequestBody Aluno aluno) throws Exception {
+        try {
+            this.alunoService.alterarAluno(aluno);
+            return DefaultResponseEntityFactory.create(
+                    "Alunos alterados com sucesso!",
+                    aluno,
+                    HttpStatus.OK
+            );
+        } catch (SQLException e) {
+            return DefaultResponseEntityFactory.create(
+                    "Erro ao atualizar dado de Aluno!",
+                    Collections.emptyList(),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> removerAluno (@PathVariable("id") Long id) throws Exception {
+        try {
+
+            this.alunoService.removerAluno(id);
+            return DefaultResponseEntityFactory.create(
+                    "Aluno removido com sucesso!",
+                    id,
+                    HttpStatus.OK
+            );
+        } catch (SQLException e) {
+            return DefaultResponseEntityFactory.create(
+                    "Erro ao remover Aluno!",
+                    Collections.emptyList(),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
 }

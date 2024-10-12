@@ -24,4 +24,12 @@ public class AlunoService {
     public void cadastrarAlunos(Aluno aluno) throws Exception {
         alunoRepository.cadastrarAlunos(aluno);
     }
+
+    public void alterarAluno(Aluno aluno) throws Exception {
+        alunoRepository.alterarAluno(aluno);
+    }
+
+    public void removerAluno(Long id) throws Exception {
+        alunoRepository.removerAluno(id);
+    }
 }

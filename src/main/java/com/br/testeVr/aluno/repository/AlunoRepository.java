@@ -8,5 +8,7 @@ import java.util.List;
 public interface AlunoRepository {
     List<Aluno> getAlunos() throws SQLException;
     void cadastrarAlunos(Aluno aluno) throws SQLException;
+    void alterarAluno(Aluno aluno) throws SQLException;
+    void removerAluno(Long id) throws Exception;
 
 }

@@ -53,4 +53,42 @@ public class AlunoRepositoryImpl implements AlunoRepository {
             stmt.executeUpdate(sql.toString());
         }
     }
+
+    private boolean verificaAlunoMatriculado(Long codigoCurso) throws Exception {
+
+        try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {
+            sql = new StringBuilder();
+            sql.append("SELECT COUNT(*) as total FROM curso_aluno WHERE id_curso = ");
+            sql.append(codigoCurso);
+            ResultSet resultSet = stmt.executeQuery(sql.toString());
+            return resultSet.next() && resultSet.getInt("total") > 0;
+        }
+
+    }
+
+    @Override
+    public void alterarAluno(Aluno aluno) throws SQLException {
+        try(Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()){
+            sql = new StringBuilder();
+            sql.append("UPDATE aluno SET nome = '");
+            sql.append(aluno.getNome());
+            sql.append("' WHERE id = ");
+            sql.append(aluno.getId());
+            stmt.executeUpdate(sql.toString());
+        }
+    }
+
+    @Override
+    public void removerAluno(Long id) throws Exception {
+        if (verificaAlunoMatriculado(id)){
+            throw new Exception("Aluno está matriculado em algum curso");
+        }
+
+        try(Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()){
+            sql = new StringBuilder();
+            sql.append("DELETE FROM aluno WHERE id = ");
+            sql.append(id);
+            stmt.executeUpdate(sql.toString());
+        }
+    }
 }
