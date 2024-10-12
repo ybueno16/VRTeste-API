@@ -1,9 +1,9 @@
-package com.br.testeVr.curso.controller;
+package com.br.testeVr.aluno.controller;
 
+import com.br.testeVr.aluno.model.Aluno;
+import com.br.testeVr.aluno.service.AlunoService;
 import com.br.testeVr.config.Global;
 import com.br.testeVr.config.ResponseEntity.DefaultResponseEntityFactory;
-import com.br.testeVr.curso.model.Curso;
-import com.br.testeVr.curso.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,28 +14,27 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping(Global.API_URL + "/cursos")
-public class CursoController {
-
-    private final CursoService cursoService;
+@RequestMapping(Global.API_URL + "/alunos")
+public class AlunoController {
+    private final AlunoService alunoService;
 
     @Autowired
-    public CursoController(CursoService cursoService) {
-        this.cursoService = cursoService;
+    public AlunoController(AlunoService alunoService) {
+        this.alunoService = alunoService;
     }
 
     @GetMapping
-    public ResponseEntity<?> getCursos() throws Exception {
+    public ResponseEntity<?> getAlunos() throws Exception {
         try {
-            List<Curso> cursos = this.cursoService.getCursos();
+            List<Aluno> alunos = this.alunoService.getAlunos();
             return DefaultResponseEntityFactory.create(
-                    "Cursos recuperados com sucesso!",
-                    cursos,
+                    "Alunos recuperados com sucesso!",
+                    alunos,
                     HttpStatus.OK
             );
         } catch (SQLException e) {
             return DefaultResponseEntityFactory.create(
-                    "Erro ao recuperar os Cursos!",
+                    "Erro ao recuperar os Alunos!",
                     Collections.emptyList(),
                     HttpStatus.INTERNAL_SERVER_ERROR
             );
@@ -43,17 +42,17 @@ public class CursoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> cadastrarCurso(@RequestBody Curso curso) throws Exception {
+    public ResponseEntity<?> cadastrarAluno(@RequestBody Aluno aluno) throws Exception {
         try {
-            this.cursoService.cadastrarCurso(curso);
+            this.alunoService.cadastrarAlunos(aluno);
             return DefaultResponseEntityFactory.create(
-                    "Cursos inseridos com sucesso!",
-                    curso,
+                    "Alunos inseridos com sucesso!",
+                    aluno,
                     HttpStatus.OK
             );
         } catch (SQLException e) {
             return DefaultResponseEntityFactory.create(
-                    "Erro ao inserir os Cursos!",
+                    "Erro ao inserir os Alunos!",
                     Collections.emptyList(),
                     HttpStatus.INTERNAL_SERVER_ERROR
             );

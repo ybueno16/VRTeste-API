@@ -28,7 +28,7 @@ public class CursoRepositoryImpl implements CursoRepository {
         try(Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()){
 
             sql = new StringBuilder();
-            sql.append("SELECT * FROM CURSO");
+            sql.append("SELECT c.id, c.descricao, c.ementa  FROM curso c");
             ResultSet resultSet = stmt.executeQuery(sql.toString());
 
             while (resultSet.next()) {
