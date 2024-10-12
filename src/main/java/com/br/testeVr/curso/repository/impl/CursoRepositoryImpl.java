@@ -54,4 +54,31 @@ public class CursoRepositoryImpl implements CursoRepository {
             stmt.executeUpdate(sql.toString());
         }
     }
+
+    private boolean verificaAlunoMatriculado(Long codigoCurso) throws Exception {
+
+        try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {
+            sql = new StringBuilder();
+            sql.append("SELECT COUNT(*) as total FROM curso_aluno WHERE id_curso = ");
+            sql.append(codigoCurso);
+            ResultSet resultSet = stmt.executeQuery(sql.toString());
+            return resultSet.next() && resultSet.getInt("total") > 0;
+        }
+
+    }
+
+    @Override
+    public void removerCurso(Long id) throws Exception {
+
+        if(verificaAlunoMatriculado(id)) {
+            throw new Exception("Curso possui alunos matriculados");
+        }
+
+        try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {
+            sql = new StringBuilder();
+            sql.append("DELETE FROM curso WHERE id = ");
+            sql.append(id);
+            stmt.executeUpdate(sql.toString());
+        }
+    }
 }

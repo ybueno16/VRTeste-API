@@ -1,7 +1,7 @@
 package com.br.testeVr.curso.controller;
 
 import com.br.testeVr.config.Global;
-import com.br.testeVr.config.ResponseEntity.DefaultResponseEntityFactory;
+    import com.br.testeVr.config.ResponseEntity.DefaultResponseEntityFactory;
 import com.br.testeVr.curso.model.Curso;
 import com.br.testeVr.curso.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +54,24 @@ public class CursoController {
         } catch (SQLException e) {
             return DefaultResponseEntityFactory.create(
                     "Erro ao inserir os Cursos!",
+                    Collections.emptyList(),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> removerCurso(@PathVariable("id") Long id) throws Exception {
+        try {
+            this.cursoService.removerCurso(id);
+            return DefaultResponseEntityFactory.create(
+                    "Cursos removido com sucesso!",
+                    id,
+                    HttpStatus.OK
+            );
+        } catch (SQLException e) {
+            return DefaultResponseEntityFactory.create(
+                    "Erro ao remover os Cursos!",
                     Collections.emptyList(),
                     HttpStatus.INTERNAL_SERVER_ERROR
             );

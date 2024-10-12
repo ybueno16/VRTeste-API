@@ -24,4 +24,8 @@ public class CursoService {
     public void cadastrarCurso(Curso curso) throws Exception {
         cursoRepository.cadastrarCurso(curso);
     }
+
+    public void removerCurso(Long id) throws Exception {
+        cursoRepository.removerCurso(id);
+    }
 }

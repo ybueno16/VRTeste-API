@@ -7,4 +7,5 @@ import java.util.List;
 public interface CursoRepository {
     List<Curso> getCursos() throws Exception;
     void cadastrarCurso(Curso curso) throws Exception;
+    void removerCurso(Long id) throws Exception;
 }
