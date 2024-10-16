@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping(Global.API_URL + "/matriculas")
@@ -19,6 +20,24 @@ public class MatriculaController {
 
     public MatriculaController(MatriculaService matriculaService) {
         this.matriculaService = matriculaService;
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getMatriculas() throws Exception {
+        try {
+            List<Matricula> matriculas = this.matriculaService.getMatriculas();
+            return DefaultResponseEntityFactory.create(
+                    "Matriculas recuperadas com sucesso!",
+                    matriculas,
+                    HttpStatus.OK
+            );
+        } catch (SQLException e) {
+            return DefaultResponseEntityFactory.create(
+                    "Erro ao recuperar as Matriculas!",
+                    Collections.emptyList(),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 
     @PostMapping
