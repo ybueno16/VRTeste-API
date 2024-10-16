@@ -41,8 +41,6 @@ public class MatriculaRepositoryImpl implements MatriculaRepository {
             while (resultSet.next()) {
                 MatriculaInfo matricula = new MatriculaInfo();
                 matricula.setId(resultSet.getLong("id"));
-//                matricula.setIdAluno(resultSet.getLong("id_aluno"));
-//                matricula.setIdCurso(resultSet.getLong("id_curso"));
                 matricula.setNomeCurso(resultSet.getString("nome_curso"));
                 matricula.setNomeAluno(resultSet.getString("nome_aluno"));
                 matriculas.add(matricula);

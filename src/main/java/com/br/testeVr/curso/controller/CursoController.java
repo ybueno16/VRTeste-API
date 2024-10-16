@@ -2,6 +2,7 @@ package com.br.testeVr.curso.controller;
 
 import com.br.testeVr.config.Global;
     import com.br.testeVr.config.ResponseEntity.DefaultResponseEntityFactory;
+import com.br.testeVr.config.swagger.DefaultOperation;
 import com.br.testeVr.curso.model.Curso;
 import com.br.testeVr.curso.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class CursoController {
         this.cursoService = cursoService;
     }
 
+    @DefaultOperation(summary = "Listar", description = "Listar Cursos", tags = {"Cursos"})
     @GetMapping
     public ResponseEntity<?> getCursos() throws Exception {
         try {
@@ -42,6 +44,7 @@ public class CursoController {
         }
     }
 
+    @DefaultOperation(summary = "Cadastrar", description = "Cadastrar Cursos", tags = {"Cursos"})
     @PostMapping
     public ResponseEntity<?> cadastrarCurso(@RequestBody Curso curso) throws Exception {
         try {
@@ -60,6 +63,7 @@ public class CursoController {
         }
     }
 
+    @DefaultOperation(summary = "Editar", description = "Editar Cursos", tags = {"Cursos"})
     @PutMapping
     public ResponseEntity<?> alterarCurso(@RequestBody Curso curso) throws Exception {
         try {
@@ -79,6 +83,7 @@ public class CursoController {
     }
 
 
+    @DefaultOperation(summary = "Remover", description = "Remover Cursos", tags = {"Cursos"})
     @DeleteMapping("/{id}")
     public ResponseEntity<?> removerCurso(@PathVariable("id") Long id) throws Exception {
         try {

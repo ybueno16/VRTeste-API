@@ -40,6 +40,12 @@ public class MatriculaControllerTest {
     }
 
     @Test
+    public void testGetMatriculas() throws Exception {
+        ResponseEntity<?> response = matriculaController.getMatriculas();
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
     public void testCadastrarMatricula() throws Exception {
         doNothing().when(matriculaService).cadastrarMatricula(matricula);
         ResponseEntity<?> response = matriculaController.cadastrarMatricula(matricula);

@@ -4,6 +4,8 @@ import com.br.testeVr.aluno.model.Aluno;
 import com.br.testeVr.aluno.service.AlunoService;
 import com.br.testeVr.config.Global;
 import com.br.testeVr.config.ResponseEntity.DefaultResponseEntityFactory;
+import com.br.testeVr.config.swagger.DefaultOperation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,7 @@ public class AlunoController {
     public AlunoController(AlunoService alunoService) {
         this.alunoService = alunoService;
     }
+    @DefaultOperation(summary = "Listar", description = "Listar Alunos", tags = {"Alunos"})
 
     @GetMapping
     public ResponseEntity<?> getAlunos() throws Exception {
@@ -41,6 +44,7 @@ public class AlunoController {
         }
     }
 
+    @DefaultOperation(summary = "Cadastrar", description = "Cadastrar Alunos", tags = {"Alunos"})
     @PostMapping
     public ResponseEntity<?> cadastrarAluno(@RequestBody Aluno aluno) throws Exception {
         try {
@@ -59,6 +63,7 @@ public class AlunoController {
         }
     }
 
+    @DefaultOperation(summary = "Editar", description = "Editar Alunos", tags = {"Alunos"})
     @PutMapping
     public ResponseEntity<?> alterarAluno(@RequestBody Aluno aluno) throws Exception {
         try {
@@ -77,6 +82,8 @@ public class AlunoController {
         }
     }
 
+    @DefaultOperation(summary = "Remover", description = "Remover Alunos", tags = {"Alunos"}, parameters = {
+            @Parameter(name = "id", required = true, description = "Id do Aluno")})
     @DeleteMapping("/{id}")
     public ResponseEntity<?> removerAluno (@PathVariable("id") Long id) throws Exception {
         try {

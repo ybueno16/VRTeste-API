@@ -46,5 +46,11 @@ class MatriculaServiceTest {
         verify(matriculaRepository).removerMatricula(1L);
     }
 
+    @Test
+    public void testGetMatriculas() throws Exception {
+        matriculaRepository.getMatriculas();
+        verify(matriculaRepository).getMatriculas();
+    }
+
 
 }

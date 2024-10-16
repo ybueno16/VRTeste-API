@@ -2,6 +2,7 @@ package com.br.testeVr.matricula.controller;
 
 import com.br.testeVr.config.Global;
 import com.br.testeVr.config.ResponseEntity.DefaultResponseEntityFactory;
+import com.br.testeVr.config.swagger.DefaultOperation;
 import com.br.testeVr.matricula.DTO.MatriculaInfo;
 import com.br.testeVr.matricula.model.Matricula;
 import com.br.testeVr.matricula.service.MatriculaService;
@@ -23,6 +24,7 @@ public class MatriculaController {
         this.matriculaService = matriculaService;
     }
 
+    @DefaultOperation(summary = "Listar", description = "LIstar Matriculas", tags = {"Matricula"})
     @GetMapping
     public ResponseEntity<?> getMatriculas() throws Exception {
         try {
@@ -41,6 +43,7 @@ public class MatriculaController {
         }
     }
 
+    @DefaultOperation(summary = "Cadastrar", description = "Cadastrar Matriculas", tags = {"Matriculas"})
     @PostMapping
     public ResponseEntity<?> cadastrarMatricula(@RequestBody Matricula matricula) throws Exception {
         try {
@@ -59,6 +62,7 @@ public class MatriculaController {
         }
     }
 
+    @DefaultOperation(summary = "Remover", description = "Remover Matriculas", tags = {"Matriculas"})
     @DeleteMapping("/{id}")
     public ResponseEntity<?> removerMatricula(@PathVariable("id") Long id) throws Exception {
         try {
