@@ -2,6 +2,7 @@ package com.br.testeVr.matricula.controller;
 
 import com.br.testeVr.config.Global;
 import com.br.testeVr.config.ResponseEntity.DefaultResponseEntityFactory;
+import com.br.testeVr.matricula.DTO.MatriculaInfo;
 import com.br.testeVr.matricula.model.Matricula;
 import com.br.testeVr.matricula.service.MatriculaService;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class MatriculaController {
     @GetMapping
     public ResponseEntity<?> getMatriculas() throws Exception {
         try {
-            List<Matricula> matriculas = this.matriculaService.getMatriculas();
+            List<MatriculaInfo> matriculas = this.matriculaService.getMatriculas();
             return DefaultResponseEntityFactory.create(
                     "Matriculas recuperadas com sucesso!",
                     matriculas,

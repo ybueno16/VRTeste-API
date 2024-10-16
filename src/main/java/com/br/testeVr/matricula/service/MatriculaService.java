@@ -1,5 +1,6 @@
 package com.br.testeVr.matricula.service;
 
+import com.br.testeVr.matricula.DTO.MatriculaInfo;
 import com.br.testeVr.matricula.model.Matricula;
 import com.br.testeVr.matricula.repository.MatriculaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class MatriculaService {
     }
 
 
-    public List<Matricula> getMatriculas() throws Exception {
+    public List<MatriculaInfo> getMatriculas() throws Exception {
         return matriculaRepository.getMatriculas();
     }
 
